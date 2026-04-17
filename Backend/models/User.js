@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-// 🔹 Define User Schema
+// Define User Schema
 const userSchema = new mongoose.Schema(
     {
-        // 🔹 Basic Info
+        // Basic Info
         name: {
             type: String,
             required: true,
@@ -14,33 +14,33 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
 
-        // 🔹 Wallet Address (unique identity)
+        // Wallet Address (unique identity)
         walletAddress: {
             type: String,
             required: true,
             unique: true, // no duplicate users
         },
 
-        // 🔹 Uploaded document (file name or path)
+        // Uploaded document (file name or path)
         document: {
             type: String,
             required: true,
         },
 
-        // 🔹 Hash of document (stored on blockchain)
+        // Hash of document (stored on blockchain)
         hash: {
             type: String,
             required: true,
         },
 
-        // 🔹 Verification status
+        // Verification status
         status: {
             type: String,
             enum: ["Pending", "Verified", "Revoked"],
             default: "Pending",
         },
 
-        // 🔹 Who verified the user (optional)
+        // Who verified the user (optional)
         verifiedBy: {
             type: String,
             default: null,
@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-// 🔹 Create Model
+// Create Model
 const User = mongoose.model("User", userSchema);
 
 export default User;

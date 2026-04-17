@@ -4,7 +4,7 @@ function Home() {
     return (
         <div className="min-h-screen bg-gray-950 text-white">
 
-            {/* 🔹 HERO SECTION */}
+            {/* HERO SECTION */}
             <div className="flex flex-col items-center justify-center text-center px-6 py-20">
 
                 <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
@@ -17,7 +17,7 @@ function Home() {
                     and use your identity across multiple decentralized applications.
                 </p>
 
-                {/* 🔹 Buttons */}
+                {/* Buttons */}
                 <div className="mt-8 flex gap-4 flex-wrap justify-center">
                     <Link
                         to="/register"
@@ -35,7 +35,7 @@ function Home() {
                 </div>
             </div>
 
-            {/* 🔹 FEATURES SECTION */}
+            {/* FEATURES SECTION */}
             <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
 
                 {/* Feature 1 */}
@@ -69,7 +69,7 @@ function Home() {
                 </div>
             </div>
 
-            {/* 🔹 HOW IT WORKS */}
+            {/* HOW IT WORKS */}
             <div className="bg-gray-900 py-16 px-6 text-center">
 
                 <h2 className="text-3xl font-bold mb-10">
@@ -101,7 +101,7 @@ function Home() {
                 </div>
             </div>
 
-            {/* 🔹 FOOTER */}
+            {/* FOOTER */}
             <div className="text-center text-gray-500 py-6 text-sm">
                 © 2026 Identity DApp | Built with Blockchain 🚀
             </div>

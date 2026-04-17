@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 
-// 🔹 Import controller functions
+// Import controller functions
 import {
     registerUser,
     getUser,
@@ -12,32 +12,28 @@ import {
 
 const router = express.Router();
 
-// ===============================
-// 🔹 MULTER SETUP (IMPORTANT)
-// ===============================
+// MULTER SETUP (IMPORTANT)
 
-// 🔹 Store file in memory (not disk)
+// Store file in memory (not disk)
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
 
-// ===============================
-// 🔹 ROUTES
-// ===============================
+// ROUTES
 
-// 📌 Register user (with file upload)
+// Register user (with file upload)
 router.post("/register", upload.single("file"), registerUser);
 
-// 📌 Get user by wallet address
+// Get user by wallet address
 router.get("/user/:address", getUser);
 
-// 📌 Get all pending users
+// Get all pending users
 router.get("/pending-users", getPendingUsers);
 
-// 📌 Verify user
+// Verify user
 router.post("/verify", verifyUser);
 
-// 📌 Revoke user
+// Revoke user
 router.post("/revoke", revokeUser);
 
 export default router;

@@ -1,18 +1,14 @@
 import { ethers } from "ethers";
 
-// =======================================
-// 🔹 CONFIG (REPLACE LATER)
-// =======================================
+//  CONFIG (REPLACE LATER)
 
-// 👉 Replace when teammate gives contract
+// Replace when teammate gives contract
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS";
 
-// 👉 Paste ABI here later
+// Paste ABI here later
 const CONTRACT_ABI = [];
 
-// =======================================
-// 🔹 CONNECT WALLET
-// =======================================
+//  CONNECT WALLET
 export const connectWallet = async () => {
     try {
         if (!window.ethereum) {
@@ -30,9 +26,7 @@ export const connectWallet = async () => {
     }
 };
 
-// =======================================
-// 🔹 GET CURRENT WALLET (NO POPUP)
-// =======================================
+//  GET CURRENT WALLET (NO POPUP)
 export const getCurrentWallet = async () => {
     try {
         if (!window.ethereum) return null;
@@ -47,9 +41,7 @@ export const getCurrentWallet = async () => {
     }
 };
 
-// =======================================
-// 🔹 GET CONTRACT INSTANCE
-// =======================================
+//  GET CONTRACT INSTANCE
 const getContract = async () => {
     try {
         if (!window.ethereum) {
@@ -57,13 +49,13 @@ const getContract = async () => {
             return null;
         }
 
-        // 🔹 Provider (connects to blockchain)
+        //  Provider (connects to blockchain)
         const provider = new ethers.BrowserProvider(window.ethereum);
 
-        // 🔹 Signer (user wallet)
+        //  Signer (user wallet)
         const signer = await provider.getSigner();
 
-        // 🔹 Contract instance
+        //  Contract instance
         const contract = new ethers.Contract(
             CONTRACT_ADDRESS,
             CONTRACT_ABI,
@@ -76,9 +68,7 @@ const getContract = async () => {
     }
 };
 
-// =======================================
-// 🔹 REGISTER IDENTITY (WRITE)
-// =======================================
+//  REGISTER IDENTITY (WRITE)
 export const registerIdentity = async (hash) => {
     try {
         const contract = await getContract();
@@ -98,9 +88,7 @@ export const registerIdentity = async (hash) => {
     }
 };
 
-// =======================================
-// 🔹 CHECK VERIFICATION (READ)
-// =======================================
+//  CHECK VERIFICATION (READ)
 export const isVerified = async (address) => {
     try {
         const contract = await getContract();
@@ -114,9 +102,7 @@ export const isVerified = async (address) => {
     }
 };
 
-// =======================================
-// 🔹 VERIFY USER (ADMIN)
-// =======================================
+//  VERIFY USER (ADMIN)
 export const verifyIdentity = async (address) => {
     try {
         const contract = await getContract();
@@ -132,9 +118,7 @@ export const verifyIdentity = async (address) => {
     }
 };
 
-// =======================================
-// 🔹 REVOKE USER (ADMIN)
-// =======================================
+//  REVOKE USER (ADMIN)
 export const revokeIdentity = async (address) => {
     try {
         const contract = await getContract();

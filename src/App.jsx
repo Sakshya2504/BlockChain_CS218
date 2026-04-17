@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-// 🔹 Pages
+//  Pages
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -9,29 +9,29 @@ import Verifier from "./pages/Verifier";
 
 function App() {
   return (
-    // 🔹 Router wraps entire app
+    //  Router wraps entire app
     <BrowserRouter>
 
-      {/* 🔹 Navbar visible on all pages */}
+      {/*  Navbar visible on all pages */}
       <Navbar />
 
-      {/* 🔹 Main Content Area */}
+      {/*  Main Content Area */}
       <div className="pt-2">
         <Routes>
 
-          {/* 🔹 Home Page */}
+          {/*  Home Page */}
           <Route path="/" element={<Home />} />
 
-          {/* 🔹 Register Identity */}
+          {/*  Register Identity */}
           <Route path="/register" element={<Register />} />
 
-          {/* 🔹 User Dashboard */}
+          {/*  User Dashboard */}
           <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* 🔹 Verifier/Admin Panel */}
+          {/*  Verifier/Admin Panel */}
           <Route path="/verifier" element={<Verifier />} />
 
-          {/* 🔹 Fallback Route (if page not found) */}
+          {/*  Fallback Route (if page not found) */}
           <Route
             path="*"
             element={

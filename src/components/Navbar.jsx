@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { connectWallet, getCurrentWallet } from "../services/blockchain";
 
 function Navbar() {
-    // 🔹 State
+    // State
     const [isOpen, setIsOpen] = useState(false);
     const [wallet, setWallet] = useState(null);
 
-    // 🔹 Auto-detect wallet on load
+    // Auto-detect wallet on load
     useEffect(() => {
         const checkWallet = async () => {
             const address = await getCurrentWallet();
@@ -17,13 +17,13 @@ function Navbar() {
         checkWallet();
     }, []);
 
-    // 🔹 Connect wallet
+    // Connect wallet
     const handleConnectWallet = async () => {
         const address = await connectWallet();
         if (address) setWallet(address);
     };
 
-    // 🔹 Format wallet (short view)
+    // Format wallet (short view)
     const formatAddress = (addr) => {
         return addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : "";
     };
@@ -31,15 +31,15 @@ function Navbar() {
     return (
         <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
 
-            {/* 🔹 Container */}
+            {/* Container */}
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-                {/* 🔹 Logo */}
+                {/* Logo */}
                 <h1 className="text-xl md:text-2xl font-bold tracking-wide text-blue-400">
                     Identity DApp
                 </h1>
 
-                {/* 🔹 Desktop Menu */}
+                {/* Desktop Menu */}
                 <div className="hidden md:flex items-center space-x-6">
 
                     <Link to="/" className="hover:text-blue-400 transition">
@@ -55,7 +55,7 @@ function Navbar() {
                         Verifier
                     </Link>
 
-                    {/* 🔹 Wallet Section */}
+                    {/* Wallet Section */}
                     {wallet ? (
                         <span className="bg-green-600 px-4 py-1 rounded-full text-sm font-semibold">
                             {formatAddress(wallet)}
@@ -70,7 +70,7 @@ function Navbar() {
                     )}
                 </div>
 
-                {/* 🔹 Mobile Menu Button */}
+                {/* Mobile Menu Button */}
                 <button
                     className="md:hidden text-2xl"
                     onClick={() => setIsOpen(!isOpen)}
@@ -79,7 +79,7 @@ function Navbar() {
                 </button>
             </div>
 
-            {/* 🔹 Mobile Menu */}
+            {/* Mobile Menu */}
             {isOpen && (
                 <div className="md:hidden px-4 pb-4 space-y-3 bg-gray-800">
 
@@ -96,7 +96,7 @@ function Navbar() {
                         Verifier
                     </Link>
 
-                    {/* 🔹 Wallet (Mobile) */}
+                    {/* Wallet (Mobile) */}
                     {wallet ? (
                         <span className="block bg-green-600 px-4 py-2 rounded-lg text-center font-semibold">
                             {formatAddress(wallet)}

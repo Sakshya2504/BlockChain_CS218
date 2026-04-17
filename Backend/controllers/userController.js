@@ -1,19 +1,17 @@
 import User from "../models/User.js";
 import crypto from "crypto";
 
-// ===============================
-// 🔹 REGISTER USER
-// ===============================
+// REGISTER USER
 export const registerUser = async (req, res) => {
     try {
         const { name, email, walletAddress } = req.body;
 
-        // 🔹 Check if file exists
+        // Check if file exists
         if (!req.file) {
             return res.status(400).json({ message: "No file uploaded" });
         }
 
-        // 🔹 Generate hash of file (identity proof)
+        // Generate hash of file (identity proof)
         const fileBuffer = req.file.buffer;
 
         const hash = crypto
@@ -21,14 +19,14 @@ export const registerUser = async (req, res) => {
             .update(fileBuffer)
             .digest("hex");
 
-        // 🔹 Check if user already exists
+        // Check if user already exists
         const existingUser = await User.findOne({ walletAddress });
 
         if (existingUser) {
             return res.status(400).json({ message: "User already registered" });
         }
 
-        // 🔹 Create new user
+        // Create new user
         const newUser = new User({
             name,
             email,
@@ -42,7 +40,7 @@ export const registerUser = async (req, res) => {
 
         res.status(201).json({
             message: "User registered successfully",
-            hash, // 🔹 send hash to frontend (for blockchain)
+            hash, // send hash to frontend (for blockchain)
         });
     } catch (error) {
         console.error(error);
@@ -50,9 +48,7 @@ export const registerUser = async (req, res) => {
     }
 };
 
-// ===============================
-// 🔹 GET USER BY WALLET
-// ===============================
+// GET USER BY WALLET
 export const getUser = async (req, res) => {
     try {
         const { address } = req.params;
@@ -70,9 +66,7 @@ export const getUser = async (req, res) => {
     }
 };
 
-// ===============================
-// 🔹 GET PENDING USERS
-// ===============================
+// GET PENDING USERS
 export const getPendingUsers = async (req, res) => {
     try {
         const users = await User.find({ status: "Pending" });
@@ -84,9 +78,7 @@ export const getPendingUsers = async (req, res) => {
     }
 };
 
-// ===============================
-// 🔹 VERIFY USER
-// ===============================
+// VERIFY USER
 export const verifyUser = async (req, res) => {
     try {
         const { address } = req.body;
@@ -109,9 +101,7 @@ export const verifyUser = async (req, res) => {
     }
 };
 
-// ===============================
-// 🔹 REVOKE USER
-// ===============================
+// REVOKE USER
 export const revokeUser = async (req, res) => {
     try {
         const { address } = req.body;

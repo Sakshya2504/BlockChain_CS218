@@ -3,17 +3,17 @@ import { getUser } from "../services/api";
 import { getCurrentWallet } from "../services/blockchain";
 
 function Dashboard() {
-    // 🔹 State
+    // State
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [wallet, setWallet] = useState(null);
 
-    // 🔹 Fetch user data
+    // Fetch user data
     const fetchUser = async () => {
         try {
             setLoading(true);
 
-            // 🔹 Get wallet from MetaMask
+            // Get wallet from MetaMask
             const walletAddress = await getCurrentWallet();
 
             if (!walletAddress) {
@@ -24,7 +24,7 @@ function Dashboard() {
 
             setWallet(walletAddress);
 
-            // 🔹 Fetch from backend
+            // Fetch from backend
             const res = await getUser(walletAddress);
 
             setUser(res.data);
@@ -36,17 +36,17 @@ function Dashboard() {
         }
     };
 
-    // 🔹 Run on load
+    // Run on load
     useEffect(() => {
         fetchUser();
     }, []);
 
-    // 🔹 Refresh
+    // Refresh
     const refreshStatus = () => {
         fetchUser();
     };
 
-    // 🔹 Status color
+    // Status color
     const getStatusColor = (status) => {
         switch (status) {
             case "Verified":
@@ -60,7 +60,7 @@ function Dashboard() {
         }
     };
 
-    // 🔹 Format wallet
+    // Format wallet
     const formatAddress = (addr) => {
         return addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : "";
     };
@@ -68,12 +68,12 @@ function Dashboard() {
     return (
         <div className="min-h-screen bg-gray-950 text-white p-6">
 
-            {/* 🔹 Title */}
+            {/* Title */}
             <h1 className="text-3xl font-bold mb-6 text-center">
                 User Dashboard
             </h1>
 
-            {/* 🔹 Loading */}
+            {/* Loading */}
             {loading ? (
                 <p className="text-center text-gray-400">Loading...</p>
             ) : !wallet ? (

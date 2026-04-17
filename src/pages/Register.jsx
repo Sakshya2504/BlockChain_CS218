@@ -3,7 +3,7 @@ import { registerUser } from "../services/api";
 import { getCurrentWallet, registerIdentity } from "../services/blockchain";
 
 function Register() {
-    // 🔹 State
+    // State
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -13,7 +13,7 @@ function Register() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-    // 🔹 Handle input change
+    // Handle input change
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -21,7 +21,7 @@ function Register() {
         });
     };
 
-    // 🔹 Handle file
+    // Handle file
     const handleFileChange = (e) => {
         setFormData({
             ...formData,
@@ -29,11 +29,11 @@ function Register() {
         });
     };
 
-    // 🔹 Submit
+    // Submit
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // 🔹 Get wallet
+        // Get wallet
         const walletAddress = await getCurrentWallet();
 
         if (!walletAddress) {
@@ -41,7 +41,7 @@ function Register() {
             return;
         }
 
-        // 🔹 Validation
+        // Validation
         if (!formData.name || !formData.email || !formData.file) {
             setMessage("❌ Please fill all fields");
             return;
@@ -51,24 +51,24 @@ function Register() {
             setLoading(true);
             setMessage("");
 
-            // 🔹 Prepare data
+            // Prepare data
             const data = new FormData();
             data.append("name", formData.name);
             data.append("email", formData.email);
             data.append("walletAddress", walletAddress);
             data.append("file", formData.file);
 
-            // 🔹 Backend call
+            // Backend call
             const res = await registerUser(data);
 
             const { hash } = res.data;
 
-            // 🔥 Blockchain call (important)
+            // Blockchain call (important)
             await registerIdentity(hash);
 
             setMessage("✅ Identity registered on blockchain!");
 
-            // 🔹 Reset
+            // Reset
             setFormData({
                 name: "",
                 email: "",

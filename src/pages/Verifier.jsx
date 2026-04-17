@@ -3,12 +3,12 @@ import { getPendingUsers, verifyUser, revokeUser } from "../services/api";
 import { verifyIdentity, revokeIdentity } from "../services/blockchain";
 
 function Verifier() {
-    // 🔹 State
+    // State
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [actionLoading, setActionLoading] = useState(null); // track button loading
 
-    // 🔹 Fetch users
+    // Fetch users
     const fetchUsers = async () => {
         try {
             setLoading(true);
@@ -25,15 +25,15 @@ function Verifier() {
         fetchUsers();
     }, []);
 
-    // 🔹 Verify user
+    // Verify user
     const handleVerify = async (address) => {
         try {
             setActionLoading(address);
 
-            // 🔥 Blockchain call
+            //Blockchain call
             await verifyIdentity(address);
 
-            // 🔹 Backend update
+            // Backend update
             await verifyUser(address);
 
             fetchUsers();
@@ -44,15 +44,15 @@ function Verifier() {
         }
     };
 
-    // 🔹 Revoke user
+    // Revoke user
     const handleRevoke = async (address) => {
         try {
             setActionLoading(address);
 
-            // 🔥 Blockchain call
+            //Blockchain call
             await revokeIdentity(address);
 
-            // 🔹 Backend update
+            // Backend update
             await revokeUser(address);
 
             fetchUsers();
